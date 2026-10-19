@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Keybindings · skyland</title>
+<meta name="description" content="skyland&#x27;s default keybindings (hypr profile), next to 43PR&#x27;s Hyprland keys.">
+<meta property="og:title" content="Keybindings · skyland">
+<meta property="og:description" content="skyland&#x27;s default keybindings (hypr profile), next to 43PR&#x27;s Hyprland keys.">
+<meta property="og:image" content="https://waxdred.github.io/skyland-site/assets/img/desktop-v3.jpg">
+<meta name="theme-color" content="#181926">
+<link rel="icon" href="../assets/img/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap">
+<link rel="stylesheet" href="../assets/site.css">
+<script src="../assets/site.js"></script>
+</head>
+<body>
+<header class="top"><div class="wrap">
+<a class="brand" href="../index.html"><img src="../assets/img/icon.png" alt="">skyland</a>
+<nav class="links">
+<a class="hide-sm" href="../index.html#features">Features</a>
+<a class="" href="../install.html">Install</a>
+<a class=" active" href="../docs/index.html">Docs</a>
+<a href="https://github.com/waxdred/skyland">GitHub</a>
+<button class="theme-toggle" type="button" aria-label="Light or dark">◐</button>
+</nav>
+</div></header>
+<div class="docs"><aside><h4>Start</h4><a class="" href="../docs/index.html">Overview</a><a class="" href="../install.html">Install</a><a class="" href="../docs/coming-from-hyprland.html">Coming from Hyprland</a><h4>Use</h4><a class="" href="../docs/configuration.html">Configuration</a><a class="active" href="../docs/keybindings.html">Keybindings</a><a class="" href="../docs/commands.html">Commands</a><h4>Ecosystem</h4><a class="" href="../docs/skylandbar.html">skylandbar</a><a class="" href="../docs/cyberdeck.html">cyberdeck</a><h4>Reference</h4><a class="" href="../docs/compatibility.html">Compatibility</a><a class="" href="../docs/troubleshooting.html">Troubleshooting</a></aside><article><!-- title: Keybindings -->
+<!-- description: skyland's default keybindings (hypr profile), next to 43PR's Hyprland keys. -->
+<h1>Keybindings</h1>
+<p>The default hypr profile, next to the <a href="https://github.com/43PR/dotfiles">43PR</a> Hyprland keys it follows.
+Change any of them in <code>[mode.main.binding]</code> or in the Keys tab of the settings window, which records a key and
+flags duplicates and macOS shortcuts. <kbd>alt-shift-h</kbd> shows the list from your own config.</p>
+<div class="card table-wrap"><table>
+<tr><th>Keys</th><th>Action</th><th>43PR</th></tr>
+<tr><td><kbd>alt-t</kbd>, <kbd>alt-enter</kbd></td><td>Ghostty</td><td><kbd>Super+T</kbd></td></tr>
+<tr><td><kbd>cmd-e</kbd> / <kbd>cmd-b</kbd></td><td>Finder / Brave</td><td><kbd>Super+E</kbd> / <kbd>Super+B</kbd></td></tr>
+<tr><td><kbd>alt-q</kbd></td><td>close the window</td><td><kbd>Super+Q</kbd></td></tr>
+<tr><td><kbd>alt-f</kbd></td><td>fullscreen</td><td><kbd>Super+F</kbd></td></tr>
+<tr><td><kbd>alt-space</kbd></td><td>float at 70%, centered / tile back</td><td><kbd>Super+Space</kbd></td></tr>
+<tr><td><kbd>alt-j</kbd></td><td>togglesplit</td><td></td></tr>
+<tr><td><kbd>alt</kbd> + left / right drag</td><td>move (tiles swap on drop, drop on an edge to split) / resize from the nearest corner</td><td><kbd>Super</kbd> + mouse</td></tr>
+<tr><td><kbd>cmd-h/j/k/l</kbd></td><td>focus</td><td><kbd>Super+H/J/K/L</kbd></td></tr>
+<tr><td><kbd>cmd-shift-h/j/k/l</kbd></td><td>move the window</td><td><kbd>Super+Shift+H/J/K/L</kbd></td></tr>
+<tr><td><kbd>cmd-alt-h/j/k/l</kbd>, <kbd>cmd-alt-e</kbd></td><td>resize, balance</td><td><kbd>Super+Ctrl+H/J/K/L</kbd></td></tr>
+<tr><td><kbd>cmd-1</kbd>…<kbd>0</kbd>, <kbd>cmd-shift-1</kbd>…<kbd>0</kbd></td><td>workspace 1–10 (on its screen), move the window there</td><td><kbd>Super+1…0</kbd></td></tr>
+<tr><td><kbd>cmd-left</kbd> / <kbd>cmd-right</kbd></td><td>previous / next workspace</td><td></td></tr>
+<tr><td><kbd>cmd-up</kbd></td><td>overview: arrows or a digit to go, j / k to pick a window, x to close it, type to search, alt + drag a card to swap workspaces</td><td>hyprexpo</td></tr>
+<tr><td><kbd>alt-`</kbd>, <kbd>alt-shift-`</kbd></td><td>window switcher: hold alt, press again to move on, release to focus</td><td>hyprswitch</td></tr>
+<tr><td><kbd>alt-s</kbd> / <kbd>alt-shift-s</kbd></td><td>scratchpad: slide in / out, send the window to it</td><td><code>togglespecialworkspace</code></td></tr>
+<tr><td><kbd>alt-a</kbd></td><td>named scratchpad <code>music</code>: Spotify, started if needed</td><td><code>special:music</code></td></tr>
+<tr><td><kbd>alt-ctrl-p</kbd></td><td>pin: a floating window on every workspace</td><td><code>pin</code></td></tr>
+<tr><td><kbd>alt-g</kbd></td><td>group: the container becomes tabs, again: tiles</td><td><code>togglegroup</code></td></tr>
+<tr><td><kbd>alt-n</kbd>, <kbd>alt-shift-n</kbd></td><td>next / previous tab of the group</td><td><code>changegroupactive</code></td></tr>
+<tr><td><kbd>alt-ctrl-h/j/k/l</kbd></td><td>group with the window in that direction</td><td><code>moveintogroup</code></td></tr>
+<tr><td><kbd>alt-shift-t</kbd></td><td>master layout on / off for this workspace</td><td><code>layout master</code></td></tr>
+<tr><td><kbd>alt-shift-enter</kbd></td><td>swap the focused window with the master</td><td><code>swapwithmaster</code></td></tr>
+<tr><td><kbd>alt-shift-r</kbd></td><td>resize mode: h/j/k/l or arrows, <kbd>e</kbd> balances, esc / enter back; a HUD lists its keys</td><td><code>submap = resize</code></td></tr>
+<tr><td><kbd>alt-i</kbd></td><td>settings window</td><td><kbd>Super+I</kbd></td></tr>
+<tr><td><kbd>alt-r</kbd></td><td>window management off / on (stock macOS windows while off)</td><td></td></tr>
+<tr><td><kbd>alt-o</kbd></td><td>inactive window opacity 100 / 90 / 80 / 70</td><td><kbd>Super+O</kbd></td></tr>
+<tr><td><kbd>alt-l</kbd>, <kbd>alt-shift-l</kbd></td><td>light / dark, theme picker</td><td><kbd>Super+L</kbd></td></tr>
+<tr><td><kbd>alt-w</kbd></td><td>wallpaper picker</td><td><kbd>Super+W</kbd></td></tr>
+<tr><td><kbd>alt-p</kbd>, <kbd>alt-shift-p</kbd></td><td>screenshot an area (space: a window), every display</td><td><kbd>Shift+Delete</kbd>, <kbd>Delete</kbd></td></tr>
+<tr><td><kbd>alt-tab</kbd></td><td>lock screen</td><td><kbd>Super+Tab</kbd></td></tr>
+<tr><td><kbd>alt-m</kbd></td><td>media widget</td><td></td></tr>
+<tr><td><kbd>alt-d</kbd></td><td>apps launcher (<a href="cyberdeck.html">cyberdeck</a>)</td><td><kbd>Super+D</kbd></td></tr>
+<tr><td><kbd>alt-shift-m</kbd>, <kbd>alt-shift-x</kbd></td><td>messages panel, dismiss all</td><td><kbd>Super+Shift+M</kbd>, <kbd>Super+Shift+X</kbd></td></tr>
+<tr><td><kbd>alt-shift-d</kbd></td><td>HUD: clock, calendar, connections, system, agents</td><td></td></tr>
+<tr><td><kbd>alt-shift-h</kbd></td><td>shortcut cheat sheet</td><td></td></tr>
+</table></div>
+</article></div>
+<footer><div class="wrap">
+<span>skyland is MIT licensed, a fork of <a href="https://github.com/nikitabobko/AeroSpace">AeroSpace</a>. Not affiliated with Apple or Hyprland.</span>
+<span><a href="https://github.com/waxdred/skyland">skyland</a> · <a href="https://github.com/waxdred/skylandBar">skylandbar</a> · <a href="https://github.com/waxdred/skyland-cyberdeck">cyberdeck</a> · <a href="https://github.com/waxdred/skyland/releases">Releases</a></span>
+</div></footer>
+</body>
+</html>

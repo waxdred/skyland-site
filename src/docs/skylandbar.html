@@ -1,0 +1,44 @@
+<!-- title: skylandbar -->
+<!-- description: skylandbar, skyland's status bar in Liquid Glass on macOS 14 to 26, SketchyBar compatible, with a selection lens that flows between workspaces. -->
+<h1>skylandbar</h1>
+<p>The bar of skyland, in Liquid Glass on macOS 14 to 26, and a drop-in for <a href="https://github.com/FelixKratz/SketchyBar">SketchyBar</a>
+configs. Source: <a href="https://github.com/waxdred/skylandBar">waxdred/skylandBar</a>.</p>
+<img class="card" src="../assets/img/skylandbar.png" alt="skylandbar: Liquid Glass workspaces with their apps, glass status capsules and the notch" loading="lazy">
+
+<h2 id="features">What it does</h2>
+<ul>
+  <li><b>Liquid Glass before macOS 26</b>: a shader bends what is behind the bar at the edges like a lens, splits its colors a little, blurs and lights it. Apple's own glass on macOS 26; a Core Animation blur without Screen Recording.</li>
+  <li><b>A selection lens</b> on the focused workspace that flows to the next one like a drop of water, with colors along its edge; hover drops under the mouse.</li>
+  <li><b>Follows the trackpad</b>: with skyland's swipe, the lens moves with your fingers and springs back if you let go halfway.</li>
+  <li><b>skyland built in</b>: workspaces with their apps' icons, the focused window title, mode and focus events from skyland's socket, no script. It tells skyland its height, so windows stay below it.</li>
+  <li><b>The notch</b>: hover the camera notch and a glass panel grows out of it with your items (now playing, clock, volume).</li>
+  <li><b>One TOML file</b>, hot reloaded, with vars, includes and themes, or <code>skylandbar --add/--set</code> commands as SketchyBar does; a settings window that writes back to the file.</li>
+  <li><b>SketchyBar compatible</b>: scripts reach it as <code>sketchybar</code>, it holds SketchyBar's Mach names, and <a href="https://github.com/FelixKratz/SbarLua">SbarLua</a> configs run as they are.</li>
+</ul>
+<div class="gallery">
+  <figure class="card"><img src="../assets/img/lens.gif" alt="The lens flowing between workspaces" loading="lazy"><figcaption>The lens flows to the focused workspace</figcaption></figure>
+  <figure class="card"><img src="../assets/img/swipe.gif" alt="The lens following a three-finger swipe" loading="lazy"><figcaption>It follows the three-finger swipe</figcaption></figure>
+  <figure class="card"><img src="../assets/img/notch.gif" alt="The glass notch opening" loading="lazy"><figcaption>The notch opens on a spring</figcaption></figure>
+</div>
+
+<h2 id="install">Install</h2>
+<pre><code>brew install waxdred/tap/skylandbar
+mkdir -p ~/.config/skylandbar/themes
+cp "$(brew --prefix)"/share/skylandbar/themes/liquid-glass.toml ~/.config/skylandbar/themes/
+cp "$(brew --prefix)"/share/skylandbar/examples/liquid-glass.toml ~/.config/skylandbar/skylandbar.toml
+skylandbar --check            # "ok, N items"
+skylandbar --service install  # starts now and at every login</code></pre>
+<p>Quit SketchyBar first. Installed, skylandbar also starts with skyland when it is not running yet.</p>
+
+<h2 id="config">A workspaces item</h2>
+<pre><code>[[item]]
+type = "workspaces"            # skyland's workspaces, built in
+name = "workspace"
+position = "left"
+icon = { font = "Hack Nerd Font:Bold:15", padding_left = 10, padding_right = 10 }
+background = { drawing = true, color = "0x00000000", height = 28, corner_radius = "concentric" }
+focused = { background.glass = "lens", background.color = "0x40c6a0f6" }
+hover = { background.glass = "hover" }
+workspaces = { animation = "tanh", animation_frames = 20, max = 12 }</code></pre>
+<p>The full reference (items, glass, notch, popups, events, settings window) is in the
+<a href="https://github.com/waxdred/skylandBar#readme">skylandBar README</a>.</p>

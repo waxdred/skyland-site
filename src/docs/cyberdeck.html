@@ -1,0 +1,45 @@
+<!-- title: cyberdeck -->
+<!-- description: skyland-cyberdeck: a cyberpunk apps launcher, a messages panel with a scripting API, a HUD with live system data and an audio deck for macOS. -->
+<h1>skyland-cyberdeck</h1>
+<p>Cyberpunk HUD pieces for macOS: neon colors, cut corners, glow, scanlines. Made for skyland, works with any window
+manager. Source: <a href="https://github.com/waxdred/skyland-cyberdeck">waxdred/skyland-cyberdeck</a>.</p>
+<pre><code>brew install waxdred/tap/skyland-cyberdeck</code></pre>
+
+<div class="gallery">
+  <figure class="card"><img src="../assets/img/launcher.jpg" alt="Apps launcher" loading="lazy"><figcaption><b>Launcher</b> <kbd>alt-d</kbd></figcaption></figure>
+  <figure class="card"><img src="../assets/img/hud.jpg" alt="HUD" loading="lazy"><figcaption><b>HUD</b> <kbd>alt-shift-d</kbd></figcaption></figure>
+  <figure class="card"><img src="../assets/img/messages.jpg" alt="Messages panel" loading="lazy"><figcaption><b>Messages</b> <kbd>alt-shift-m</kbd></figcaption></figure>
+</div>
+
+<h2 id="launcher">Apps launcher</h2>
+<p>A curved column of apps around the selection. Type to search (prefix, word start, substring, then fuzzy), apps you
+launch often come first. <kbd>↑</kbd> <kbd>↓</kbd> or scroll, <kbd>return</kbd> or a click to launch, <kbd>esc</kbd> to close.</p>
+<pre><code>skyland-cyberdeck launcher   # toggle</code></pre>
+
+<h2 id="hud">HUD</h2>
+<p>A deck over the desktop with real data only: clock and calendar, Wi-Fi, Bluetooth and AirDrop, brightness and volume,
+CPU, RAM, network, disk and battery, <a href="https://herdr.dev">herdr</a> agents, the last messages and quick launch.
+Click a card to open its app, drag it by its header. Nothing runs while it is closed.</p>
+<pre><code>skyland-cyberdeck hud           # toggle
+skyland-cyberdeck config init   # writes ~/.config/skyland-cyberdeck/config.toml</code></pre>
+
+<h2 id="audio">Audio deck</h2>
+<p>The live signal of what plays, on a neon grid; now playing with artwork; the output devices as numbered ports; the apps
+playing sound now. <kbd>space</kbd> play / pause, <kbd>←</kbd> <kbd>→</kbd> tracks, <kbd>↑</kbd> <kbd>↓</kbd> volume.</p>
+<pre><code>skyland-cyberdeck audio   # toggle</code></pre>
+
+<h2 id="messages">Messages and scripting API</h2>
+<p>The macOS Notification Center history merged with the messages your scripts send, as neon contact cards.</p>
+<pre><code>skyland-cyberdeck notify -t TITLE [-b BODY] [-s SUBTITLE] [-a APP] [--seconds N] [--quiet]
+skyland-cyberdeck list [--json] [--limit N] [--all]
+skyland-cyberdeck dismiss &lt;id&gt; | --all
+
+# a long command is done
+make build; skyland-cyberdeck notify -t "make build" -b "exit $status" -a com.mitchellh.ghostty
+# unread count for a bar item
+skyland-cyberdeck list --json | jq length</code></pre>
+
+<h2 id="themes">Themes</h2>
+<pre><code>skyland-cyberdeck theme list            # cyberpunk, skyland, then the skyland themes
+skyland-cyberdeck theme skyland         # follow the current skyland theme
+skyland-cyberdeck theme 43pr-dracula    # a skyland theme by name, or a .css file</code></pre>

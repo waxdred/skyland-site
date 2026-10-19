@@ -1,0 +1,38 @@
+<!-- title: Troubleshooting -->
+<!-- description: Fixes for skyland: invisible windows, missing effects, shortcuts that do nothing, permissions, extra Spaces. -->
+<h1>Troubleshooting</h1>
+<p>Start with <code>skyland doctor</code>: it checks the whole install (permissions, SIP, payload, sudoers, bar, border) and
+prints the fix for each problem.</p>
+
+<h2 id="invisible">A window is invisible</h2>
+<p>skyland restores every window on quit and on <code>SIGTERM</code>; on a crash or <code>kill -9</code>, the Dock payload
+shows the windows it changed again. If one is still missing:</p>
+<pre><code>skyland enable off   # windows parked in a corner come back
+killall Dock         # resets alpha and transforms set by the payload (then: skyland sa load)</code></pre>
+
+<h2 id="no-effects">No corners, opacity or animations</h2>
+<p>The payload is not loaded. <code>skyland-sa send ping</code> must answer <code>ok fade …</code>; if not:</p>
+<pre><code>skyland sa load</code></pre>
+<p>It is gone after a reboot or <code>killall Dock</code> unless the <a href="../install.html#autostart">LaunchAgent</a> injects it.
+Without SIP partly off it cannot load at all: see <a href="../install.html#effects">Full effects</a>.</p>
+
+<h2 id="shortcuts">Shortcuts do nothing</h2>
+<p>Check that <b>Skyland</b> is allowed in System Settings › Privacy &amp; Security › Accessibility. Started from a terminal,
+macOS asks for the terminal instead: start it with <code>open</code> or <code>skyland env</code>.</p>
+
+<h2 id="spaces">Two windows share a workspace after clicking another app</h2>
+<p>Several macOS Spaces exist. skyland expects one per display: remove the others in Mission Control.</p>
+
+<h2 id="thumbnails">The overview shows app icons, not windows</h2>
+<p>Allow <b>Skyland</b> in Screen Recording (System Settings › Privacy &amp; Security). Windows of hidden workspaces show their
+last picture once you have visited them.</p>
+
+<h2 id="build">Building from source fails</h2>
+<ul>
+  <li><code>'async' call cannot occur in a defer body</code>: the build used Xcode's Swift. Use <code>swiftly run swift build</code>
+    (or <code>bin/skyland-build</code>): skyland needs Swift 6.4.</li>
+  <li><code>libSystem.B.tbd: unknown architecture</code>: a newer SDK than the toolchain knows. Prefix with
+    <code>SDKROOT=/Library/Developer/CommandLineTools/SDKs/MacOSX26.5.sdk</code>.</li>
+</ul>
+
+<p>Still stuck? <a href="https://github.com/waxdred/skyland/issues">Open an issue</a> with the output of <code>skyland doctor</code>.</p>

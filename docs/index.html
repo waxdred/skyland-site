@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Docs · skyland</title>
+<meta name="description" content="skyland documentation: install, configuration, keybindings, commands, skylandbar, cyberdeck, compatibility.">
+<meta property="og:title" content="Docs · skyland">
+<meta property="og:description" content="skyland documentation: install, configuration, keybindings, commands, skylandbar, cyberdeck, compatibility.">
+<meta property="og:image" content="https://waxdred.github.io/skyland-site/assets/img/desktop-v3.jpg">
+<meta name="theme-color" content="#181926">
+<link rel="icon" href="../assets/img/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap">
+<link rel="stylesheet" href="../assets/site.css">
+<script src="../assets/site.js"></script>
+</head>
+<body>
+<header class="top"><div class="wrap">
+<a class="brand" href="../index.html"><img src="../assets/img/icon.png" alt="">skyland</a>
+<nav class="links">
+<a class="hide-sm" href="../index.html#features">Features</a>
+<a class="" href="../install.html">Install</a>
+<a class=" active" href="../docs/index.html">Docs</a>
+<a href="https://github.com/waxdred/skyland">GitHub</a>
+<button class="theme-toggle" type="button" aria-label="Light or dark">◐</button>
+</nav>
+</div></header>
+<div class="docs"><aside><h4>Start</h4><a class="active" href="../docs/index.html">Overview</a><a class="" href="../install.html">Install</a><a class="" href="../docs/coming-from-hyprland.html">Coming from Hyprland</a><h4>Use</h4><a class="" href="../docs/configuration.html">Configuration</a><a class="" href="../docs/keybindings.html">Keybindings</a><a class="" href="../docs/commands.html">Commands</a><h4>Ecosystem</h4><a class="" href="../docs/skylandbar.html">skylandbar</a><a class="" href="../docs/cyberdeck.html">cyberdeck</a><h4>Reference</h4><a class="" href="../docs/compatibility.html">Compatibility</a><a class="" href="../docs/troubleshooting.html">Troubleshooting</a></aside><article><!-- title: Docs -->
+<!-- description: skyland documentation: install, configuration, keybindings, commands, skylandbar, cyberdeck, compatibility. -->
+<h1>skyland docs</h1>
+<p>skyland is a fork of <a href="https://github.com/nikitabobko/AeroSpace">AeroSpace</a>: everything AeroSpace
+does still works (virtual workspaces, tree layouts, the CLI, the TOML config), and skyland adds the layouts,
+decoration, animations and desktop pieces of a Hyprland setup.</p>
+
+<div class="grid" style="margin-top:28px">
+  <a class="card feature" href="../install.html"><h3>Install</h3><p>Homebrew, source or release zip; permissions; the optional Dock payload for window effects.</p></a>
+  <a class="card feature" href="coming-from-hyprland.html"><h3>Coming from Hyprland</h3><p>Your hyprland.conf habits, mapped to skyland: dispatchers, rules, submaps, animations.</p></a>
+  <a class="card feature" href="configuration.html"><h3>Configuration</h3><p>Layouts, decoration, animations, themes, wallpaper, window rules, binding modes.</p></a>
+  <a class="card feature" href="keybindings.html"><h3>Keybindings</h3><p>The default hypr profile, next to 43PR's Hyprland keys.</p></a>
+  <a class="card feature" href="commands.html"><h3>Commands</h3><p>Every command, for bindings, scripts and the shell.</p></a>
+  <a class="card feature" href="skylandbar.html"><h3>skylandbar</h3><p>The Liquid Glass bar, SketchyBar compatible.</p></a>
+  <a class="card feature" href="cyberdeck.html"><h3>cyberdeck</h3><p>Apps launcher, messages panel with a scripting API, HUD, audio deck.</p></a>
+  <a class="card feature" href="compatibility.html"><h3>Compatibility</h3><p>What is tested on which macOS, and how to check yours.</p></a>
+  <a class="card feature" href="troubleshooting.html"><h3>Troubleshooting</h3><p>Invisible windows, missing effects, shortcuts that do nothing.</p></a>
+</div>
+
+<h2 id="how-it-works">How it works</h2>
+<p>The window manager is AeroSpace's Swift app, with skyland's additions in <code>Sources/AppBundle/skyland/</code>.
+Windows are moved and resized through the public Accessibility API. What that API cannot do (corner radius,
+the alpha of other apps' windows, transforms for animations) goes through a <b>scripting addition injected into
+Dock</b>: Dock owns the universal SkyLight connection, so changes sent from there apply to every app's windows.</p>
+<ul>
+  <li>Animations and fades are stepped by the payload in sync with the display, through one SkyLight
+    transaction per frame. WindowServer-side animations are never used: an animated alpha crashed
+    WindowServer when a window closed mid-fade.</li>
+  <li>The payload remembers the windows it changed. If Skyland ends for any reason, it shows them again.</li>
+  <li>Workspaces are virtual: windows of hidden workspaces are parked in a screen corner, as AeroSpace does.
+    No macOS Spaces, no Mission Control animations.</li>
+</ul>
+<p>Everything goes through one CLI, <code>skyland</code>: its own scripts (<code>skyland theme pick</code>,
+<code>skyland doctor</code>) and every window manager command (<code>skyland workspace 3</code>,
+<code>skyland list-windows --all</code>).</p>
+</article></div>
+<footer><div class="wrap">
+<span>skyland is MIT licensed, a fork of <a href="https://github.com/nikitabobko/AeroSpace">AeroSpace</a>. Not affiliated with Apple or Hyprland.</span>
+<span><a href="https://github.com/waxdred/skyland">skyland</a> · <a href="https://github.com/waxdred/skylandBar">skylandbar</a> · <a href="https://github.com/waxdred/skyland-cyberdeck">cyberdeck</a> · <a href="https://github.com/waxdred/skyland/releases">Releases</a></span>
+</div></footer>
+</body>
+</html>
