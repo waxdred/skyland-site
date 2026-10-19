@@ -173,3 +173,75 @@ footer .wrap { display: flex; gap: 24px; flex-wrap: wrap; justify-content: space
   .docs aside h4 { width: 100%; margin: 8px 0 0; }
 }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+/* ---------------------------------------------------------------- motion
+   Hyprland's curves: overshot (popin) and easeOut; Apple-like reveals on scroll.
+   Only for elements the script marked (.reveal): without JS everything shows. */
+:root {
+  --overshot: cubic-bezier(0.05, 0.9, 0.1, 1.05);
+  --ease-out: cubic-bezier(0.05, 0.9, 0.1, 1);
+}
+.reveal {
+  opacity: 0;
+  transform: translateY(32px);
+  filter: blur(8px);
+  transition: opacity 0.8s var(--ease-out), transform 0.9s var(--overshot), filter 0.8s var(--ease-out);
+  transition-delay: calc(var(--i, 0) * 70ms);
+}
+.reveal.pop { transform: scale(0.8); }                      /* windows, popin 80% */
+.reveal.from-left { transform: translateX(-80px) scale(0.96); } /* workspace slide */
+.reveal.from-right { transform: translateX(80px) scale(0.96); }
+.reveal.in { opacity: 1; transform: none; filter: none; }
+.shot.tilt { transform-origin: 50% 0; will-change: transform; }
+
+/* the tiling demo: a sticky stage, windows laid out by the scroll position */
+.tiling { height: 420vh; position: relative; }
+.tiling .stage { position: sticky; top: 0; height: 100vh; display: flex; flex-direction: column; justify-content: center; }
+.tiling .head { text-align: center; margin-bottom: 22px; }
+.tiling .head h2 { margin: 0 0 6px; }
+.tiling .caption { color: var(--text-dim); min-height: 1.7em; transition: opacity 0.3s; font-family: var(--mono); font-size: 15px; }
+.tiling .caption kbd { color: var(--text); }
+.desk {
+  position: relative; height: min(62vh, 560px); border-radius: 18px; overflow: hidden;
+  border: 1px solid var(--border);
+  background:
+    radial-gradient(600px 300px at 20% 10%, color-mix(in srgb, var(--accent) 35%, transparent), transparent 70%),
+    radial-gradient(500px 300px at 90% 90%, color-mix(in srgb, var(--accent-2) 35%, transparent), transparent 70%),
+    linear-gradient(160deg, #1e1e2e, #11111b);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.45);
+}
+.desk .bar {
+  position: absolute; left: 10px; right: 10px; top: 8px; height: 26px; border-radius: 13px; z-index: 2;
+  display: flex; align-items: center; gap: 8px; padding: 0 12px; font: 12px var(--mono); color: #cad3f5;
+  background: rgba(54, 58, 79, 0.55); backdrop-filter: blur(10px); border: 1px solid rgba(202, 211, 245, 0.15);
+}
+.desk .bar .ws { width: 18px; text-align: center; border-radius: 9px; opacity: 0.6; transition: background 0.4s var(--overshot), opacity 0.3s; }
+.desk .bar .ws.on { opacity: 1; background: color-mix(in srgb, var(--accent) 45%, transparent); }
+.desk .area { position: absolute; left: 10px; right: 10px; top: 42px; bottom: 10px; }
+.win {
+  position: absolute; border-radius: 10px; overflow: hidden;
+  background: rgba(30, 30, 46, 0.86); border: 2px solid rgba(202, 211, 245, 0.12);
+  transition: left 0.55s var(--overshot), top 0.55s var(--overshot), width 0.55s var(--overshot), height 0.55s var(--overshot),
+              opacity 0.35s var(--ease-out), transform 0.5s var(--overshot), border-color 0.3s, filter 0.3s;
+  opacity: 0; transform: scale(0.8);
+}
+.win.shown { opacity: 0.92; transform: none; filter: brightness(0.85); }
+.win.focused { opacity: 1; filter: none; border-color: transparent;
+  background: linear-gradient(rgba(30, 30, 46, 0.95), rgba(30, 30, 46, 0.95)) padding-box,
+              linear-gradient(135deg, var(--accent), var(--accent-2), var(--accent-3)) border-box; }
+.win .title { height: 22px; display: flex; align-items: center; gap: 5px; padding: 0 9px; font: 11px var(--mono); color: #a5adcb; border-bottom: 1px solid rgba(202, 211, 245, 0.08); }
+.win .title i { width: 8px; height: 8px; border-radius: 50%; background: #ed8796; display: inline-block; }
+.win .title i + i { background: #eed49f; }
+.win .title i + i + i { background: #a6da95; margin-right: 6px; }
+.win .body { padding: 10px; display: grid; gap: 6px; }
+.win .body b { display: block; height: 7px; border-radius: 4px; background: rgba(202, 211, 245, 0.16); }
+.win .body b:nth-child(3n + 1) { width: 70%; background: color-mix(in srgb, var(--accent) 45%, transparent); }
+.win .body b:nth-child(3n + 2) { width: 90%; }
+.win .body b:nth-child(3n) { width: 45%; background: color-mix(in srgb, var(--accent-3) 40%, transparent); }
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal, .reveal.pop, .reveal.from-left, .reveal.from-right { opacity: 1; transform: none; filter: none; transition: none; }
+  .win { transition: opacity 0.2s; }
+  .tiling { height: auto; }
+  .tiling .stage { position: static; height: auto; padding: 40px 0; }
+}
