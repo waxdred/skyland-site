@@ -128,6 +128,10 @@ section .sub { color: var(--text-dim); margin: 0 0 32px; max-width: 760px; }
 .gallery { display: grid; gap: 16px; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); }
 .gallery figure { margin: 0; overflow: hidden; }
 .gallery img { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; }
+/* wide or short pictures (the media widget, the bar's lens): whole, not cropped */
+.gallery figure.whole img { object-fit: contain; background: #11111b; padding: 12px; }
+.gallery.rows { grid-template-columns: 1fr; }            /* bar recordings: full width, as tall as they are */
+.gallery.rows img { aspect-ratio: auto; object-fit: initial; padding: 0; }
 .gallery figcaption { padding: 12px 16px; font-size: 14px; color: var(--text-dim); }
 .gallery figcaption b { color: var(--text); }
 
