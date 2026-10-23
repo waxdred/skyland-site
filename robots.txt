@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://waxdred.github.io/skyland-site/sitemap.xml

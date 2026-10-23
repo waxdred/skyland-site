@@ -1,141 +1,611 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="midnight">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>skyland: Hyprland on macOS</title>
-<meta name="description" content="skyland is a Hyprland-like tiling window manager for macOS: dwindle and master layouts, Hyprland animations, rounded corners, Liquid Glass, themes from your wallpaper.">
-<meta property="og:title" content="skyland: Hyprland on macOS">
-<meta property="og:description" content="skyland is a Hyprland-like tiling window manager for macOS: dwindle and master layouts, Hyprland animations, rounded corners, Liquid Glass, themes from your wallpaper.">
-<meta property="og:image" content="https://waxdred.github.io/skyland-site/assets/img/desktop-v3.jpg">
-<meta name="theme-color" content="#181926">
-<link rel="icon" href="assets/img/favicon.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap">
-<link rel="stylesheet" href="assets/site.css">
-<script src="assets/site.js"></script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Skyland — a Hyprland-inspired desktop for macOS</title>
+  <meta name="description" content="Skyland brings a Hyprland-inspired workflow to macOS: dwindle tiling, workspaces, window groups, Bézier animations and Liquid Glass panels. Open source.">
+  <meta name="color-scheme" content="dark">
+  <meta name="theme-color" content="#080A10">
+  <link rel="canonical" href="https://waxdred.github.io/skyland-site/">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Skyland">
+  <meta property="og:title" content="Skyland — a Hyprland-inspired desktop for macOS">
+  <meta property="og:description" content="Skyland brings a Hyprland-inspired workflow to macOS: dwindle tiling, workspaces, window groups, Bézier animations and Liquid Glass panels. Open source.">
+  <meta property="og:url" content="https://waxdred.github.io/skyland-site/">
+  <meta property="og:image" content="https://waxdred.github.io/skyland-site/static/images/og.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" type="image/png" href="/skyland-site/static/icons/favicon.png">
+  <link rel="apple-touch-icon" href="/skyland-site/static/icons/apple-touch-icon.png">
+
+  <!-- Reveal states only apply once JS is known to run: without it, everything is visible. -->
+  <script>document.documentElement.classList.add('js');try{var t=localStorage.getItem('skyland-site-theme');if(t)document.documentElement.dataset.theme=t;}catch(e){}</script>
+
+  <link rel="preload" as="image" href="/skyland-site/static/images/desktop-1600.webp" imagesrcset="/skyland-site/static/images/desktop-800.webp 800w, /skyland-site/static/images/desktop-1600.webp 1600w" imagesizes="(min-width: 1200px) 56vw, 92vw">
+  
+  <link rel="stylesheet" href="/skyland-site/static/css/tokens.css">
+  
+  <link rel="stylesheet" href="/skyland-site/static/css/base.css">
+  
+  <link rel="stylesheet" href="/skyland-site/static/css/glass.css">
+  
+  <link rel="stylesheet" href="/skyland-site/static/css/layout.css">
+  
+  <link rel="stylesheet" href="/skyland-site/static/css/animations.css">
+  
+  <link rel="stylesheet" href="/skyland-site/static/css/responsive.css">
+  
 </head>
 <body>
-<header class="top"><div class="wrap">
-<a class="brand" href="index.html"><img src="assets/img/icon.png" alt="">skyland</a>
-<nav class="links">
-<a class="hide-sm" href="index.html#features">Features</a>
-<a class="" href="install.html">Install</a>
-<a class="" href="docs/index.html">Docs</a>
-<a href="https://github.com/waxdred/skyland">GitHub</a>
-<button class="theme-toggle" type="button" aria-label="Light or dark">◐</button>
-</nav>
-</div></header>
-<main><!-- title: skyland -->
-<!-- description: skyland is a Hyprland-like tiling window manager for macOS: dwindle and master layouts, Hyprland animations, rounded corners, Liquid Glass, themes from your wallpaper. -->
-<div class="wrap">
-  <div class="hero">
-    <h1>Hyprland's workflow,<br><span class="grad">on your Mac.</span></h1>
-    <p class="lead">skyland is a tiling window manager for macOS with the layouts, keys, animations and look of a
-      Hyprland desktop: dwindle and master, groups, scratchpads, rounded corners, blur, Liquid Glass,
-      and colors taken from your wallpaper.</p>
-    <div class="cta">
-      <a class="btn primary" href="install.html">Install skyland</a>
-      <a class="btn" href="docs/coming-from-hyprland.html">Coming from Hyprland?</a>
-      <a class="btn" href="https://github.com/waxdred/skyland">GitHub</a>
-    </div>
-    <div class="install-line">
-<pre><code>brew install waxdred/tap/skyland
-skyland install     # dependencies, config, start
-skyland doctor      # what works, what to fix</code></pre>
-    </div>
-    <img class="shot" src="assets/img/desktop-v3.jpg" alt="skyland desktop: dwindle tiling with fastfetch, nvim and btop, the focused window border in the theme accent, skylandbar in Liquid Glass" width="1600" height="1000">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="atmos" aria-hidden="true">
+    <div class="atmos__glow atmos__glow--a"></div>
+    <div class="atmos__glow atmos__glow--b"></div>
+    <div class="atmos__grid"></div>
   </div>
+
+  
+<header class="nav" data-nav>
+  <div class="nav__inner glass glass--overlay">
+    <a class="nav__brand" href="#top" aria-label="Skyland, back to top">
+      <img src="/skyland-site/static/images/logo-128.png" width="28" height="28" alt="">
+      <span>Skyland</span>
+    </a>
+    <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="nav-menu" data-nav-toggle>
+      <span class="nav__toggle-bars" aria-hidden="true"></span><span class="sr-only">Menu</span>
+    </button>
+    <nav class="nav__menu" id="nav-menu" aria-label="Primary">
+      <ul>
+        <li><a href="#skyland">Window manager</a></li>
+        <li><a href="#workspaces">Workspaces</a></li>
+        <li><a href="#interface">Interface</a></li>
+        <li><a href="#ecosystem">Projects</a></li>
+      </ul>
+      <a class="nav__gh" href="https://github.com/waxdred/skyland" rel="noopener">GitHub <span aria-hidden="true">↗</span></a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- 01 — Hero -->
+  <section class="hero" id="top" data-hero>
+    <div class="hero__inner container">
+      <div class="hero__copy" data-hero-copy>
+        <p class="eyebrow intro" style="--d: 1">Skyland <span aria-hidden="true">/</span> Personal computing</p>
+        <h1 class="hero__title intro" style="--d: 2">Your Mac.<br><span class="accent-text">Your space.</span></h1>
+        <p class="hero__lede intro" style="--d: 3"><strong>A Hyprland-inspired desktop experience for macOS.</strong>
+          Window management, fluid animations and a liquid interface. A personal cyberspace built around the way I work.</p>
+        <div class="hero__actions intro" style="--d: 4">
+          <a class="btn btn--primary" href="#skyland">Explore Skyland</a>
+          <a class="btn btn--ghost" href="https://github.com/waxdred/skyland" rel="noopener">View on GitHub <span aria-hidden="true">↗</span></a>
+        </div>
+        <p class="hero__meta intro" style="--d: 5"><span class="mono">brew install waxdred/tap/skyland</span><span class="hero__release" data-release hidden></span></p>
+      </div>
+
+      <figure class="hero__stage intro intro--depth" style="--d: 3" data-hero-stage>
+        <div class="desk glass glass--floating" data-tilt>
+          <div class="desk__ring" aria-hidden="true"></div>
+          <img src="/skyland-site/static/images/desktop-1600.webp"
+     srcset="/skyland-site/static/images/desktop-800.webp 800w, /skyland-site/static/images/desktop-1600.webp 1600w"
+     sizes="(min-width: 1200px) 56vw, 92vw" width="1600" height="1031" alt="Skyland on macOS: dwindle tiling with fastfetch, Neovim and btop in Ghostty, the focused window bordered in the theme accent, skylandbar in Liquid Glass on top."
+     fetchpriority="high" decoding="async">
+        </div>
+        <div class="hero__chip hero__chip--a glass glass--overlay" aria-hidden="true"><span class="dot"></span>dwindle · smart_split</div>
+        <div class="hero__chip hero__chip--b glass glass--overlay" aria-hidden="true"><span class="dot dot--2"></span>focused border · theme accent</div>
+        <figcaption class="caption">Real screenshot — Skyland 0.5 on macOS Sequoia.</figcaption>
+      </figure>
+    </div>
+    <a class="scroll-cue" href="#skyland"><span class="scroll-cue__line" aria-hidden="true"></span><span>Scroll to enter</span></a>
+  </section>
+
+  <!-- 03 — Window manager -->
+  <section class="section wm" id="skyland" aria-labelledby="wm-title">
+    <div class="container wm__grid">
+      <div class="wm__copy">
+        <p class="eyebrow reveal"><span class="eyebrow__num">01</span> / Window management</p>
+        <h2 class="h2 reveal" id="wm-title">A different way to use your Mac.</h2>
+        <p class="lede reveal">Skyland brings a Hyprland-inspired workflow to macOS, combining tiling, workspaces, window groups and fluid transitions. It is a fork of <a href="https://github.com/nikitabobko/AeroSpace" rel="noopener">AeroSpace</a>: everything AeroSpace does stays, with what makes Hyprland feel like Hyprland on top.</p>
+
+        <ol class="steps" data-steps>
+          <li class="step reveal" data-step="0">
+            <span class="step__num mono">01</span>
+            <div>
+              <h3>Dwindle &amp; smart split</h3>
+              <p>New windows split the focused tile on the side of the cursor. <kbd>alt</kbd>&nbsp;<kbd>j</kbd> toggles the split, <kbd>alt</kbd>&nbsp;+ drag swaps tiles.</p>
+            </div>
+          </li>
+          <li class="step reveal" data-step="1">
+            <span class="step__num mono">02</span>
+            <div>
+              <h3>Window groups</h3>
+              <p><kbd>alt</kbd>&nbsp;<kbd>g</kbd> turns a container into tabs with a tabs bar on top; <kbd>alt</kbd>&nbsp;<kbd>n</kbd> cycles through them.</p>
+            </div>
+          </li>
+          <li class="step reveal" data-step="2">
+            <span class="step__num mono">03</span>
+            <div>
+              <h3>Scratchpads &amp; rules</h3>
+              <p><kbd>alt</kbd>&nbsp;<kbd>s</kbd> slides a scratchpad over the layout. Window rules float, size or send apps to a workspace.</p>
+            </div>
+          </li>
+        </ol>
+
+        <details class="more glass glass--ambient reveal">
+          <summary>Everything else Skyland does</summary>
+          <ul class="more__list">
+            <li><strong>Workspaces</strong> on <kbd>cmd</kbd>&nbsp;<kbd>1…0</kbd>, trackpad swipe between them, overview on <kbd>cmd</kbd>&nbsp;<kbd>↑</kbd></li>
+            <li><strong>Master layout</strong> per workspace, swap with the master</li>
+            <li><strong>Hyprland animations</strong>: presets or <code>bezier</code> lines pasted from a hyprland.conf</li>
+            <li><strong>Window decoration</strong>: rounded corners, active / inactive opacity, dim, focused border</li>
+            <li><strong>43PR themes</strong> as CSS files, colors generated from the wallpaper</li>
+            <li><strong>Binding modes</strong> (Hyprland submaps) with a HUD of their keys</li>
+            <li><strong>Settings window</strong>, key recorder and rules editor, applied live</li>
+            <li><strong>Window switcher</strong>, wallpaper picker, lock screen, media widget</li>
+          </ul>
+          <a class="link-arrow" href="&lt;built-in method keys of dict object at 0x109decb00&gt;" rel="noopener">All keybindings <span aria-hidden="true">↗</span></a>
+        </details>
+
+        <a class="link-arrow reveal" href="https://github.com/waxdred/skyland" rel="noopener">Read the source on GitHub <span aria-hidden="true">↗</span></a>
+      </div>
+
+      <div class="wm__visual">
+        <div class="wm__sticky">
+          <div class="layout-demo glass glass--floating depth-reveal" data-layout-demo data-state="-1" role="img"
+               aria-label="Schematic: four windows settle into a dwindle layout, then become a tab group, then a scratchpad slides over them.">
+            <div class="layout-demo__tabs" aria-hidden="true"><span class="is-on">nvim</span><span>btop</span><span>notes</span></div>
+            <div class="win w w1">
+  <div class="win__bar"><span class="win__dots"></span><span class="win__title">ghostty — fastfetch</span></div>
+  <div class="win__body"><span class="win__line" style="--w: 86%"></span><span class="win__line" style="--w: 62%"></span><span class="win__line" style="--w: 74%"></span><span class="win__line" style="--w: 48%"></span><span class="win__line" style="--w: 68%"></span><span class="win__line" style="--w: 55%"></span><span class="win__line" style="--w: 86%"></span><span class="win__line" style="--w: 62%"></span></div>
 </div>
+            <div class="win w w2" data-kind="code">
+  <div class="win__bar"><span class="win__dots"></span><span class="win__title">nvim</span></div>
+  <div class="win__body"><span class="win__line" style="--w: 86%"></span><span class="win__line" style="--w: 62%"></span><span class="win__line" style="--w: 74%"></span><span class="win__line" style="--w: 48%"></span><span class="win__line" style="--w: 68%"></span><span class="win__line" style="--w: 55%"></span><span class="win__line" style="--w: 86%"></span><span class="win__line" style="--w: 62%"></span><span class="win__line" style="--w: 74%"></span><span class="win__line" style="--w: 48%"></span><span class="win__line" style="--w: 68%"></span><span class="win__line" style="--w: 55%"></span></div>
+</div>
+            <div class="win w w3" data-kind="chart">
+  <div class="win__bar"><span class="win__dots"></span><span class="win__title">btop</span></div>
+  <div class="win__body"><span class="win__line" style="--w: 86%"></span><span class="win__line" style="--w: 62%"></span><span class="win__line" style="--w: 74%"></span><span class="win__line" style="--w: 48%"></span><span class="win__line" style="--w: 68%"></span><span class="win__line" style="--w: 55%"></span><span class="win__line" style="--w: 86%"></span><span class="win__line" style="--w: 62%"></span></div>
+</div>
+            <div class="win w w4">
+  <div class="win__bar"><span class="win__dots"></span><span class="win__title">notes</span></div>
+  <div class="win__body"><span class="win__line" style="--w: 86%"></span><span class="win__line" style="--w: 62%"></span><span class="win__line" style="--w: 74%"></span><span class="win__line" style="--w: 48%"></span><span class="win__line" style="--w: 68%"></span><span class="win__line" style="--w: 55%"></span><span class="win__line" style="--w: 86%"></span><span class="win__line" style="--w: 62%"></span></div>
+</div>
+            <div class="win w w5" data-kind="media">
+  <div class="win__bar"><span class="win__dots"></span><span class="win__title">scratchpad — music</span></div>
+  <div class="win__body"><span class="win__line" style="--w: 86%"></span><span class="win__line" style="--w: 62%"></span><span class="win__line" style="--w: 74%"></span><span class="win__line" style="--w: 48%"></span><span class="win__line" style="--w: 68%"></span><span class="win__line" style="--w: 55%"></span><span class="win__line" style="--w: 86%"></span><span class="win__line" style="--w: 62%"></span></div>
+</div>
+          </div>
+          <ul class="indicators" aria-label="Layout demo states">
+            <li><button type="button" data-layout-go="0" aria-pressed="false"><span class="mono">01</span> Dwindle</button></li>
+            <li><button type="button" data-layout-go="1" aria-pressed="false"><span class="mono">02</span> Group</button></li>
+            <li><button type="button" data-layout-go="2" aria-pressed="false"><span class="mono">03</span> Scratchpad</button></li>
+          </ul>
+          <p class="caption">Schematic illustration, eased with Skyland's default <code>windows-bezier = 0.05, 0.9, 0.1, 1.0</code>.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-<section class="tiling" aria-label="Tiling demo"><div class="stage"><div class="wrap">
-  <div class="head"><h2>Windows that move like Hyprland's</h2><p class="caption"></p></div>
-  <div class="desk" aria-hidden="true">
-    <div class="bar"><img src="assets/img/favicon.png" alt="" style="width:16px;height:16px;border-radius:4px"><span class="ws on">1</span><span class="ws">2</span><span class="ws">3</span><span style="margin-left:auto">21:42</span></div>
-    <div class="area"><div class="win"><div class="title"><i></i><i></i><i></i>ghostty — nvim</div><div class="body"><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b></div></div><div class="win"><div class="title"><i></i><i></i><i></i>btop</div><div class="body"><b></b><b></b><b></b><b></b><b></b><b></b><b></b></div></div><div class="win"><div class="title"><i></i><i></i><i></i>fastfetch</div><div class="body"><b></b><b></b><b></b><b></b><b></b><b></b></div></div><div class="win"><div class="title"><i></i><i></i><i></i>brave</div><div class="body"><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b></div></div><div class="win"><div class="title"><i></i><i></i><i></i>spotify</div><div class="body"><b></b><b></b><b></b><b></b><b></b></div></div><div class="win"><div class="title"><i></i><i></i><i></i>ghostty — ws 2</div><div class="body"><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b></div></div></div>
-  </div>
-</div></div></section>
+  <!-- 04 — Workspaces -->
+  <section class="section workspaces" id="workspaces" aria-labelledby="ws-title">
+    <div class="container">
+      <header class="section-head section-head--split">
+        <div>
+          <p class="eyebrow reveal">Workspaces</p>
+          <h2 class="h2 reveal" id="ws-title">One space per state of mind.</h2>
+        </div>
+        <p class="lede reveal">Code, web, system, media: each workspace keeps its windows and its layout. <kbd>cmd</kbd>&nbsp;<kbd>1…0</kbd> jumps there; with the trackpad, the windows follow your fingers.</p>
+      </header>
 
-<section id="features"><div class="wrap">
-  <h2>Everything a Hyprland desktop does</h2>
-  <p class="sub">Built on <a href="https://github.com/nikitabobko/AeroSpace">AeroSpace</a>'s virtual workspaces (no slow macOS Spaces), with what makes Hyprland feel like Hyprland on top.</p>
-  <div class="grid">
-    <div class="card feature"><span class="tag">dwindle · smart_split</span><h3>Dwindle and master layouts</h3><p>New windows split along the longest side, toward the cursor. Master per workspace, centered on ultrawide screens. <kbd>alt-j</kbd> toggles the split.</p></div>
-    <div class="card feature"><span class="tag">bezier · animation</span><h3>Hyprland animations</h3><p>Open, close, move and workspace slides with presets, or paste your <code>bezier</code> and <code>animation</code> lines from hyprland.conf.</p></div>
-    <div class="card feature"><span class="tag">decoration</span><h3>Rounded corners, opacity, dim</h3><p>Active and inactive opacity, dim inactive windows, a rotating gradient border in the theme accent, Ghostty blur.</p></div>
-    <div class="card feature"><span class="tag">togglegroup</span><h3>Groups and tabs</h3><p>Any container becomes tabs with a tabs bar. Cycle with <kbd>alt-n</kbd>, merge with a neighbour with <kbd>alt-ctrl-h/j/k/l</kbd>.</p></div>
-    <div class="card feature"><span class="tag">togglespecialworkspace</span><h3>Scratchpads and pin</h3><p>A scratchpad slides in over any workspace, named ones start their app (Spotify on <kbd>alt-a</kbd>). Pin a floating window on every workspace.</p></div>
-    <div class="card feature"><span class="tag">windowrulev2</span><h3>Window rules</h3><p>Float, size, center, opacity, rounding, no border, no dim, no animation, per app or title, in TOML or in the settings window.</p></div>
-    <div class="card feature"><span class="tag">submap</span><h3>Binding modes</h3><p>Hyprland submaps, with a HUD that lists the keys of the active mode. Bindings follow your keyboard layout (AZERTY, QWERTY).</p></div>
-    <div class="card feature"><span class="tag">gestures</span><h3>Trackpad swipe</h3><p>Three fingers move between workspaces: the windows and the bar's lens follow your fingers and spring back if you let go halfway.</p></div>
-    <div class="card feature"><span class="tag">hyprexpo · hyprswitch</span><h3>Overview and switcher</h3><p>Every workspace as a card with its windows (<kbd>cmd-up</kbd>), and a window switcher with live thumbnails, held like <kbd>cmd-tab</kbd>.</p></div>
-    <div class="card feature"><span class="tag">matugen</span><h3>Themes from your wallpaper</h3><p>18 themes from 43PR's dotfiles, or colors generated from the wallpaper, light or dark picked from its brightness. macOS follows.</p></div>
-    <div class="card feature"><span class="tag">Liquid Glass</span><h3>Glass panels</h3><p>Overview, switcher, HUDs, settings, wallpaper picker and media widget in refractive glass, or in a metal blur.</p></div>
-    <div class="card feature"><span class="tag">hyprlock</span><h3>The rest of the desktop</h3><p>A lock screen, a wallpaper picker, a media widget with audio bars, a settings window that edits your config, a shortcut cheat sheet.</p></div>
-  </div>
-</div></section>
+      <div class="ws glass glass--floating depth-reveal" data-ws>
+        <div class="ws__tabs" role="tablist" aria-label="Workspaces">
+          <span class="ws__indicator" aria-hidden="true" data-ws-indicator></span>
+          
+          
+          <button class="ws__tab stagger" style="--i: 0" role="tab" id="ws-tab-code" aria-controls="ws-panel-code"
+                  aria-selected="true" tabindex="0" data-ws-tab="0">
+            <span class="mini mini--code" aria-hidden="true"><i></i><i></i><i></i></span>
+            <span class="ws__label"><span class="mono">01</span> / Code</span>
+            <span class="ws__sub">terminal &amp; editor</span>
+          </button>
+          
+          <button class="ws__tab stagger" style="--i: 1" role="tab" id="ws-tab-web" aria-controls="ws-panel-web"
+                  aria-selected="false" tabindex="-1" data-ws-tab="1">
+            <span class="mini mini--web" aria-hidden="true"><i></i><i></i><i></i></span>
+            <span class="ws__label"><span class="mono">02</span> / Web</span>
+            <span class="ws__sub">browser</span>
+          </button>
+          
+          <button class="ws__tab stagger" style="--i: 2" role="tab" id="ws-tab-system" aria-controls="ws-panel-system"
+                  aria-selected="false" tabindex="-1" data-ws-tab="2">
+            <span class="mini mini--system" aria-hidden="true"><i></i><i></i><i></i></span>
+            <span class="ws__label"><span class="mono">03</span> / System</span>
+            <span class="ws__sub">monitoring &amp; tools</span>
+          </button>
+          
+          <button class="ws__tab stagger" style="--i: 3" role="tab" id="ws-tab-media" aria-controls="ws-panel-media"
+                  aria-selected="false" tabindex="-1" data-ws-tab="3">
+            <span class="mini mini--media" aria-hidden="true"><i></i><i></i><i></i></span>
+            <span class="ws__label"><span class="mono">04</span> / Media</span>
+            <span class="ws__sub">audio &amp; creative</span>
+          </button>
+          
+        </div>
 
-<section><div class="wrap">
-  <h2>See it</h2>
-  <p class="sub">Windows rez in, tiles swap with <kbd>alt</kbd> + drag, the switcher and the overview, a window rule, the resize mode HUD.</p>
-  <img class="shot card" style="margin-top:0" src="assets/img/demo.gif" alt="skyland demo: windows rez in with the cyberspace animation, tiles swapped, the window switcher, the resize mode HUD, a window rule, the overview and settings" loading="lazy">
-  <div class="gallery" style="margin-top:24px">
-    <figure class="card"><img src="assets/img/overview.jpg" alt="Workspace overview" loading="lazy"><figcaption><b>Overview</b> <kbd>cmd-up</kbd>: every workspace, type to search, drag to swap.</figcaption></figure>
-    <figure class="card"><img src="assets/img/switcher.jpg" alt="Window switcher in Liquid Glass" loading="lazy"><figcaption><b>Switcher</b> <kbd>alt-`</kbd>: recent windows of every workspace, live thumbnails.</figcaption></figure>
-    <figure class="card"><img src="assets/img/wallpaper-picker-v3.jpg" alt="Wallpaper picker" loading="lazy"><figcaption><b>Wallpaper picker</b> <kbd>alt-w</kbd>: the theme follows the wallpaper.</figcaption></figure>
-    <figure class="card"><img src="assets/img/lock-screen-v3.jpg" alt="Lock screen" loading="lazy"><figcaption><b>Lock screen</b> <kbd>alt-tab</kbd>: hyprlock-like, with a glassy clock.</figcaption></figure>
-    <figure class="card"><img src="assets/img/settings-v3.jpg" alt="Settings window" loading="lazy"><figcaption><b>Settings</b> <kbd>alt-i</kbd>: applied live, written back to your config with its comments.</figcaption></figure>
-    <figure class="card whole"><img src="assets/img/media-audioware.gif" alt="Media widget, audioware style" loading="lazy"><figcaption><b>Media widget</b> <kbd>alt-m</kbd>: what any app plays, with a light wave or audio bars.</figcaption></figure>
-  </div>
-</div></section>
+        <div class="ws__viewport">
+          <div class="ws__track" data-ws-track>
+            <div class="ws__panel ws__panel--code" role="tabpanel" id="ws-panel-code" aria-labelledby="ws-tab-code">
+              <div class="win p1" data-kind="code">
+  <div class="win__bar"><span class="win__dots"></span><span class="win__title">nvim — overview.swift</span></div>
+  <div class="win__body"><span class="win__line" style="--w: 86%"></span><span class="win__line" style="--w: 62%"></span><span class="win__line" style="--w: 74%"></span><span class="win__line" style="--w: 48%"></span><span class="win__line" style="--w: 68%"></span><span class="win__line" style="--w: 55%"></span><span class="win__line" style="--w: 86%"></span><span class="win__line" style="--w: 62%"></span><span class="win__line" style="--w: 74%"></span><span class="win__line" style="--w: 48%"></span><span class="win__line" style="--w: 68%"></span><span class="win__line" style="--w: 55%"></span></div>
+</div><div class="win p2">
+  <div class="win__bar"><span class="win__dots"></span><span class="win__title">ghostty</span></div>
+  <div class="win__body"><span class="win__line" style="--w: 86%"></span><span class="win__line" style="--w: 62%"></span><span class="win__line" style="--w: 74%"></span><span class="win__line" style="--w: 48%"></span><span class="win__line" style="--w: 68%"></span><span class="win__line" style="--w: 55%"></span><span class="win__line" style="--w: 86%"></span><span class="win__line" style="--w: 62%"></span></div>
+</div><div class="win p3">
+  <div class="win__bar"><span class="win__dots"></span><span class="win__title">ghostty — git log</span></div>
+  <div class="win__body"><span class="win__line" style="--w: 86%"></span><span class="win__line" style="--w: 62%"></span><span class="win__line" style="--w: 74%"></span><span class="win__line" style="--w: 48%"></span><span class="win__line" style="--w: 68%"></span><span class="win__line" style="--w: 55%"></span><span class="win__line" style="--w: 86%"></span><span class="win__line" style="--w: 62%"></span></div>
+</div>
+            </div>
+            <div class="ws__panel ws__panel--web" role="tabpanel" id="ws-panel-web" aria-labelledby="ws-tab-web" hidden>
+              <div class="win p1" data-kind="web">
+  <div class="win__bar"><span class="win__dots"></span><span class="win__title">brave — hyprland.org</span></div>
+  <div class="win__body"><span class="win__line" style="--w: 86%"></span><span class="win__line" style="--w: 62%"></span><span class="win__line" style="--w: 74%"></span><span class="win__line" style="--w: 48%"></span><span class="win__line" style="--w: 68%"></span><span class="win__line" style="--w: 55%"></span><span class="win__line" style="--w: 86%"></span><span class="win__line" style="--w: 62%"></span><span class="win__line" style="--w: 74%"></span><span class="win__line" style="--w: 48%"></span></div>
+</div><div class="win p2">
+  <div class="win__bar"><span class="win__dots"></span><span class="win__title">docs</span></div>
+  <div class="win__body"><span class="win__line" style="--w: 86%"></span><span class="win__line" style="--w: 62%"></span><span class="win__line" style="--w: 74%"></span><span class="win__line" style="--w: 48%"></span><span class="win__line" style="--w: 68%"></span><span class="win__line" style="--w: 55%"></span><span class="win__line" style="--w: 86%"></span><span class="win__line" style="--w: 62%"></span></div>
+</div>
+            </div>
+            <div class="ws__panel ws__panel--system" role="tabpanel" id="ws-panel-system" aria-labelledby="ws-tab-system" hidden>
+              <div class="win p1" data-kind="chart">
+  <div class="win__bar"><span class="win__dots"></span><span class="win__title">btop</span></div>
+  <div class="win__body"><span class="win__line" style="--w: 86%"></span><span class="win__line" style="--w: 62%"></span><span class="win__line" style="--w: 74%"></span><span class="win__line" style="--w: 48%"></span><span class="win__line" style="--w: 68%"></span><span class="win__line" style="--w: 55%"></span><span class="win__line" style="--w: 86%"></span><span class="win__line" style="--w: 62%"></span></div>
+</div><div class="win p2">
+  <div class="win__bar"><span class="win__dots"></span><span class="win__title">skyland doctor</span></div>
+  <div class="win__body"><span class="win__line" style="--w: 86%"></span><span class="win__line" style="--w: 62%"></span><span class="win__line" style="--w: 74%"></span><span class="win__line" style="--w: 48%"></span><span class="win__line" style="--w: 68%"></span><span class="win__line" style="--w: 55%"></span><span class="win__line" style="--w: 86%"></span><span class="win__line" style="--w: 62%"></span></div>
+</div><div class="win p3" data-kind="chart">
+  <div class="win__bar"><span class="win__dots"></span><span class="win__title">activity</span></div>
+  <div class="win__body"><span class="win__line" style="--w: 86%"></span><span class="win__line" style="--w: 62%"></span><span class="win__line" style="--w: 74%"></span><span class="win__line" style="--w: 48%"></span><span class="win__line" style="--w: 68%"></span><span class="win__line" style="--w: 55%"></span><span class="win__line" style="--w: 86%"></span><span class="win__line" style="--w: 62%"></span></div>
+</div><div class="win p4">
+  <div class="win__bar"><span class="win__dots"></span><span class="win__title">logs</span></div>
+  <div class="win__body"><span class="win__line" style="--w: 86%"></span><span class="win__line" style="--w: 62%"></span><span class="win__line" style="--w: 74%"></span><span class="win__line" style="--w: 48%"></span><span class="win__line" style="--w: 68%"></span><span class="win__line" style="--w: 55%"></span><span class="win__line" style="--w: 86%"></span><span class="win__line" style="--w: 62%"></span></div>
+</div>
+            </div>
+            <div class="ws__panel ws__panel--media" role="tabpanel" id="ws-panel-media" aria-labelledby="ws-tab-media" hidden>
+              <div class="win p1" data-kind="media">
+  <div class="win__bar"><span class="win__dots"></span><span class="win__title">spotify</span></div>
+  <div class="win__body"><span class="win__line" style="--w: 86%"></span><span class="win__line" style="--w: 62%"></span><span class="win__line" style="--w: 74%"></span><span class="win__line" style="--w: 48%"></span><span class="win__line" style="--w: 68%"></span><span class="win__line" style="--w: 55%"></span><span class="win__line" style="--w: 86%"></span><span class="win__line" style="--w: 62%"></span></div>
+</div><div class="win p2" data-kind="web">
+  <div class="win__bar"><span class="win__dots"></span><span class="win__title">preview</span></div>
+  <div class="win__body"><span class="win__line" style="--w: 86%"></span><span class="win__line" style="--w: 62%"></span><span class="win__line" style="--w: 74%"></span><span class="win__line" style="--w: 48%"></span><span class="win__line" style="--w: 68%"></span><span class="win__line" style="--w: 55%"></span><span class="win__line" style="--w: 86%"></span><span class="win__line" style="--w: 62%"></span></div>
+</div>
+            </div>
+          </div>
+        </div>
+      </div>
 
-<section><div class="wrap split">
-  <div>
-    <h2>skylandbar</h2>
-    <p class="sub">The bar of skyland, in Liquid Glass on every macOS. A selection lens flows between workspaces like a drop of water, follows your swipe, and the notch opens into a glass panel. It speaks SketchyBar: your <code>sketchybarrc</code> and SbarLua configs run as they are.</p>
-    <a class="btn" href="docs/skylandbar.html">skylandbar docs</a>
-  </div>
-  <img class="card" src="assets/img/lens.gif" alt="The selection lens flowing from workspace to workspace" loading="lazy">
-</div></section>
+      <div class="ws__real">
+        <p class="caption">Above: an illustration. Below: the real workspace overview, <kbd>cmd</kbd>&nbsp;<kbd>↑</kbd> — every workspace as a glass card with its windows in place.</p>
+        <figure class="shot glass glass--floating depth-reveal">
+          <img src="/skyland-site/static/images/overview-1600.webp"
+     srcset="/skyland-site/static/images/overview-800.webp 800w, /skyland-site/static/images/overview-1600.webp 1600w"
+     sizes="(min-width: 1200px) 1100px, 92vw" width="1600" height="1031" alt="Skyland workspace overview: a Liquid Glass strip of twelve workspace cards with app icons and live thumbnails, over the zoomed out windows and a sunset wallpaper."
+     loading="lazy" decoding="async">
+        </figure>
+      </div>
+    </div>
+  </section>
 
-<section><div class="wrap split">
-  <img class="card" src="assets/img/launcher.jpg" alt="cyberdeck apps launcher" loading="lazy">
-  <div>
-    <h2>skyland-cyberdeck</h2>
-    <p class="sub">Cyberpunk HUD pieces: an apps launcher (<kbd>alt-d</kbd>), a messages panel with a scripting API, and a HUD with live system data, Wi-Fi, Bluetooth and your agents.</p>
-    <a class="btn" href="docs/cyberdeck.html">cyberdeck docs</a>
-  </div>
-</div></section>
+  <!-- 05 — Liquid Glass & motion -->
+  <section class="section interface" id="interface" aria-labelledby="ui-title">
+    <div class="container">
+      <header class="section-head">
+        <p class="eyebrow reveal"><span class="eyebrow__num">02</span> / Interface design</p>
+        <h2 class="h2 reveal" id="ui-title">Interfaces that feel alive.</h2>
+        <p class="lede reveal">This is where macOS elegance meets the motion language of Hyprland.</p>
+      </header>
 
-<section><div class="wrap">
-  <h2>Works with SIP on</h2>
-  <p class="sub">Tiling and the whole desktop need nothing special. The window effects use a scripting addition injected into Dock, like yabai's, and need System Integrity Protection partly off. Your choice.</p>
-  <div class="card table-wrap">
-    <table>
-      <tr><th>With SIP on</th><th>With the Dock payload (SIP partly off)</th></tr>
-      <tr><td>Dwindle, master, groups, scratchpads, window rules</td><td>Rounded corners</td></tr>
-      <tr><td><kbd>alt</kbd> + mouse move and resize</td><td>Active and inactive opacity, dim</td></tr>
-      <tr><td>Workspaces per screen, overview, switcher</td><td>Window and workspace animations, fades</td></tr>
-      <tr><td>Themes, wallpaper colors, light and dark</td><td>Floating windows kept on top</td></tr>
-      <tr><td>skylandbar or SketchyBar, border, settings, lock screen, media widget, cyberdeck</td><td></td></tr>
-    </table>
-  </div>
-  <p style="margin-top:20px"><a href="docs/compatibility.html">Which macOS versions are tested →</a></p>
-</div></section>
+      <div class="demos">
+        <article class="demo glass glass--floating depth-reveal" data-demo="focus" style="--i: 0">
+          <div class="demo__stage" aria-hidden="true">
+            <div class="win d-a" data-kind="code">
+  <div class="win__bar"><span class="win__dots"></span><span class="win__title">nvim</span></div>
+  <div class="win__body"><span class="win__line" style="--w: 86%"></span><span class="win__line" style="--w: 62%"></span><span class="win__line" style="--w: 74%"></span><span class="win__line" style="--w: 48%"></span><span class="win__line" style="--w: 68%"></span><span class="win__line" style="--w: 55%"></span><span class="win__line" style="--w: 86%"></span><span class="win__line" style="--w: 62%"></span></div>
+</div><div class="win d-b">
+  <div class="win__bar"><span class="win__dots"></span><span class="win__title">ghostty</span></div>
+  <div class="win__body"><span class="win__line" style="--w: 86%"></span><span class="win__line" style="--w: 62%"></span><span class="win__line" style="--w: 74%"></span><span class="win__line" style="--w: 48%"></span><span class="win__line" style="--w: 68%"></span><span class="win__line" style="--w: 55%"></span><span class="win__line" style="--w: 86%"></span><span class="win__line" style="--w: 62%"></span></div>
+</div>
+          </div>
+          <div class="demo__text">
+            <h3><span class="mono">01</span> Focus</h3>
+            <p>A window becomes active. Its border lights up in the theme accent, the others dim and step back.</p>
+          </div>
+          <button class="demo__replay" type="button" data-demo-replay>Replay<span class="sr-only"> focus demo</span></button>
+        </article>
 
-<section><div class="wrap" style="text-align:center">
-  <h2>Try it in two minutes</h2>
-  <p class="sub" style="margin:0 auto 24px">Homebrew installs it, <code>skyland doctor</code> tells you what is missing. Your existing AeroSpace config keeps working.</p>
-  <div class="cta" style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
-    <a class="btn primary" href="install.html">Install</a>
-    <a class="btn" href="docs/index.html">Read the docs</a>
-  </div>
-  <p style="margin-top:40px;color:var(--text-dim);font-size:14px">Credits: <a href="https://github.com/nikitabobko/AeroSpace">AeroSpace</a> (the window manager skyland is forked from), <a href="https://github.com/koekeishiya/yabai">yabai</a> (Dock injection), <a href="https://github.com/43PR/dotfiles">43PR's dotfiles</a> (themes and default config), <a href="https://github.com/InioX/matugen">matugen</a>.</p>
-</div></section>
+        <article class="demo glass glass--floating depth-reveal" data-demo="motion" style="--i: 1">
+          <div class="demo__stage" aria-hidden="true">
+            <div class="win d-a" data-kind="chart">
+  <div class="win__bar"><span class="win__dots"></span><span class="win__title">btop</span></div>
+  <div class="win__body"><span class="win__line" style="--w: 86%"></span><span class="win__line" style="--w: 62%"></span><span class="win__line" style="--w: 74%"></span><span class="win__line" style="--w: 48%"></span><span class="win__line" style="--w: 68%"></span><span class="win__line" style="--w: 55%"></span><span class="win__line" style="--w: 86%"></span><span class="win__line" style="--w: 62%"></span></div>
+</div><div class="win d-b">
+  <div class="win__bar"><span class="win__dots"></span><span class="win__title">ghostty</span></div>
+  <div class="win__body"><span class="win__line" style="--w: 86%"></span><span class="win__line" style="--w: 62%"></span><span class="win__line" style="--w: 74%"></span><span class="win__line" style="--w: 48%"></span><span class="win__line" style="--w: 68%"></span><span class="win__line" style="--w: 55%"></span><span class="win__line" style="--w: 86%"></span><span class="win__line" style="--w: 62%"></span></div>
+</div><span class="scanline"></span>
+          </div>
+          <div class="demo__text">
+            <h3><span class="mono">02</span> Motion</h3>
+            <p>A window rezzes into the layout through a scan line — the <code>cyberspace</code> preset — while another shrinks away.</p>
+          </div>
+          <button class="demo__replay" type="button" data-demo-replay>Replay<span class="sr-only"> motion demo</span></button>
+        </article>
+
+        <article class="demo demo--wide glass glass--floating depth-reveal" data-demo="glass" style="--i: 2">
+          <div class="demo__stage" aria-hidden="true">
+            <div class="win d-a" data-kind="code">
+  <div class="win__bar"><span class="win__dots"></span><span class="win__title">nvim</span></div>
+  <div class="win__body"><span class="win__line" style="--w: 86%"></span><span class="win__line" style="--w: 62%"></span><span class="win__line" style="--w: 74%"></span><span class="win__line" style="--w: 48%"></span><span class="win__line" style="--w: 68%"></span><span class="win__line" style="--w: 55%"></span><span class="win__line" style="--w: 86%"></span><span class="win__line" style="--w: 62%"></span><span class="win__line" style="--w: 74%"></span><span class="win__line" style="--w: 48%"></span><span class="win__line" style="--w: 68%"></span><span class="win__line" style="--w: 55%"></span></div>
+</div><div class="win d-b" data-kind="chart">
+  <div class="win__bar"><span class="win__dots"></span><span class="win__title">btop</span></div>
+  <div class="win__body"><span class="win__line" style="--w: 86%"></span><span class="win__line" style="--w: 62%"></span><span class="win__line" style="--w: 74%"></span><span class="win__line" style="--w: 48%"></span><span class="win__line" style="--w: 68%"></span><span class="win__line" style="--w: 55%"></span><span class="win__line" style="--w: 86%"></span><span class="win__line" style="--w: 62%"></span></div>
+</div>
+            <div class="sheet">
+              <span class="sheet__title">Decoration</span>
+              <span class="sheet__row"><span>Rounding</span><span class="sheet__slider" style="--v: .35"></span></span>
+              <span class="sheet__row"><span>Inactive opacity</span><span class="sheet__slider" style="--v: .9"></span></span>
+              <span class="sheet__row"><span>Border width</span><span class="sheet__slider" style="--v: .25"></span></span>
+            </div>
+          </div>
+          <div class="demo__text">
+            <h3><span class="mono">03</span> Glass</h3>
+            <p>A translucent panel unfolds above the desktop. The background blurs, the highlights shift, and the content arrives in a clear hierarchy.</p>
+          </div>
+          <button class="demo__replay" type="button" data-demo-replay>Replay<span class="sr-only"> glass demo</span></button>
+        </article>
+      </div>
+
+      <div class="themes glass glass--ambient reveal">
+        <fieldset class="themes__picker">
+          <legend>Site accent</legend>
+          
+          <label class="themes__opt">
+            <input type="radio" name="site-theme" value="midnight" data-theme-input checked>
+            <span class="themes__swatch themes__swatch--midnight" aria-hidden="true"></span>Midnight
+          </label>
+          
+          <label class="themes__opt">
+            <input type="radio" name="site-theme" value="aurora" data-theme-input>
+            <span class="themes__swatch themes__swatch--aurora" aria-hidden="true"></span>Aurora
+          </label>
+          
+          <label class="themes__opt">
+            <input type="radio" name="site-theme" value="violet" data-theme-input>
+            <span class="themes__swatch themes__swatch--violet" aria-hidden="true"></span>Violet
+          </label>
+          
+        </fieldset>
+        <p class="themes__note">These three accents belong to this website. Skyland itself ships the <a href="https://github.com/waxdred/skyland/tree/main/profiles/hypr/.config/skyland/themes" rel="noopener">43PR themes</a> (Catppuccin, Nord, Tokyo Night, Rosé Pine…) and can build its colors from your wallpaper.</p>
+      </div>
+
+      <div class="gallery">
+        <figure class="shot glass glass--floating depth-reveal">
+          <img src="/skyland-site/static/images/switcher-1600.webp"
+     srcset="/skyland-site/static/images/switcher-800.webp 800w, /skyland-site/static/images/switcher-1600.webp 1600w"
+     sizes="(min-width: 900px) 50vw, 92vw" width="1600" height="1031" alt="Window switcher in Liquid Glass: recent windows of every workspace with live thumbnails."
+     loading="lazy" decoding="async">
+          <figcaption>Window switcher, <kbd>alt</kbd>&nbsp;<kbd>`</kbd></figcaption>
+        </figure>
+        <figure class="shot glass glass--floating depth-reveal" style="--i: 1">
+          <img src="/skyland-site/static/images/wallpaper-picker-1600.webp"
+     srcset="/skyland-site/static/images/wallpaper-picker-800.webp 800w, /skyland-site/static/images/wallpaper-picker-1600.webp 1600w"
+     sizes="(min-width: 900px) 50vw, 92vw" width="1600" height="1031" alt="Wallpaper picker in Liquid Glass: a strip of wallpaper thumbnails over the desktop."
+     loading="lazy" decoding="async">
+          <figcaption>Wallpaper picker, <kbd>alt</kbd>&nbsp;<kbd>w</kbd></figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- 06 — SkylandBar -->
+  <section class="section bar-scene" id="skylandbar" aria-labelledby="bar-title" data-bar-scene>
+    <div class="container">
+      <header class="section-head section-head--split">
+        <div>
+          <p class="eyebrow reveal"><span class="eyebrow__num">03</span> / System experience</p>
+          <h2 class="h2 reveal" id="bar-title">The system, reimagined.</h2>
+        </div>
+        <p class="lede reveal">SkylandBar extends the desktop with a macOS-like system bar in Liquid Glass. It speaks SketchyBar's language, so existing configs and plugins run unchanged.</p>
+      </header>
+
+      <div class="bar-stage" aria-label="SkylandBar">
+        <div class="bar-stage__scroller">
+          <div class="bar-stage__bar" data-bar>
+            <img src="/skyland-site/static/images/skylandbar-1600.webp" width="1600" height="48" loading="lazy" decoding="async"
+                 alt="SkylandBar: Liquid Glass workspace buttons with their apps on the left, the notch in the middle, glass status capsules for date, keyboard, mail, battery and volume on the right.">
+          </div>
+        </div>
+        <div class="bar-popup glass glass--overlay" aria-hidden="true" data-bar-popup>
+          <span class="bar-popup__title">Workspace 3</span>
+          <span class="bar-popup__row"><i class="app-dot"></i>ghostty</span>
+          <span class="bar-popup__row"><i class="app-dot app-dot--2"></i>nvim</span>
+          <span class="bar-popup__row"><i class="app-dot app-dot--3"></i>btop</span>
+        </div>
+        <p class="caption">The bar is a real screenshot; the popup below it is an illustration of a glass popup.</p>
+      </div>
+
+      <ul class="facts">
+        <li class="fact reveal"><h3>Liquid Glass</h3><p>Items, groups and popups in glass: Apple's on macOS 26, a refraction shader on older versions. A selection lens flows between workspaces.</p></li>
+        <li class="fact reveal" style="--i: 1"><h3>Skyland built in</h3><p>Workspaces with their apps, the focused window title, modes — read from Skyland's socket, no script to wire.</p></li>
+        <li class="fact reveal" style="--i: 2"><h3>Windows below it</h3><p>The bar tells Skyland its height. No value to keep in sync, and a TOML config reloaded live.</p></li>
+      </ul>
+      <a class="link-arrow reveal" href="https://github.com/waxdred/skylandBar" rel="noopener">SkylandBar on GitHub <span aria-hidden="true">↗</span></a>
+    </div>
+  </section>
+
+  <!-- 07 — Cyberdeck -->
+  <section class="section deck-scene" id="cyberdeck" aria-labelledby="deck-title">
+    <div class="container deck-scene__grid">
+      <div class="deck-scene__copy">
+        <p class="eyebrow reveal"><span class="eyebrow__num">04</span> / Cyberspace tools</p>
+        <h2 class="h2 reveal" id="deck-title">Your personal cyberdeck.</h2>
+        <p class="lede reveal">An apps launcher, a messages panel and a HUD with live system data — the cyberpunk side of the same universe, bound to the keys you already use.</p>
+        <a class="link-arrow reveal" href="https://github.com/waxdred/skyland-cyberdeck" rel="noopener">skyland-cyberdeck on GitHub <span aria-hidden="true">↗</span></a>
+      </div>
+
+      <div class="hud" data-hud>
+        <button class="hud__orb glass glass--overlay" type="button" aria-expanded="true" aria-controls="hud-panel" data-hud-toggle>
+          <img src="/skyland-site/static/images/logo-128.png" width="40" height="40" alt="">
+          <span class="sr-only">Show or hide the cyberdeck panel</span>
+        </button>
+        <div class="hud__panel" id="hud-panel">
+          <article class="hud-card glass glass--floating" style="--i: 0">
+            <header><span class="mono">alt-d</span><h3>Apps launcher</h3></header>
+            <p>A see-through “eye implant” deck: a curved column of apps, type to search.</p>
+          </article>
+          <article class="hud-card glass glass--floating" style="--i: 1">
+            <header><span class="mono">alt-shift-m</span><h3>Messages</h3></header>
+            <p>Notification Center history and script messages as neon contact cards.</p>
+          </article>
+          <article class="hud-card glass glass--floating" style="--i: 2">
+            <header><span class="mono">alt-shift-d</span><h3>HUD</h3></header>
+            <p>Clock, calendar, connections, CPU, RAM, network, battery and <a href="https://herdr.dev" rel="noopener">herdr</a> agents.</p>
+          </article>
+          <article class="hud-card hud-card--code glass glass--floating" style="--i: 3">
+            <header><span class="mono">api</span><h3>Scripting</h3></header>
+            <pre><code>skyland-cyberdeck notify -t TITLE -b BODY
+skyland-cyberdeck list --json</code></pre>
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="container deck-shots">
+      <figure class="shot glass glass--floating depth-reveal" data-remote-shot>
+        <img src="https://raw.githubusercontent.com/waxdred/skyland-cyberdeck/main/docs/launcher.jpg" alt="Cyberdeck apps launcher: a translucent curved column of app icons." loading="lazy" decoding="async">
+        <figcaption>Apps launcher</figcaption>
+      </figure>
+      <figure class="shot glass glass--floating depth-reveal" style="--i: 1" data-remote-shot>
+        <img src="https://raw.githubusercontent.com/waxdred/skyland-cyberdeck/main/docs/messages.jpg" alt="Cyberdeck messages panel: notifications shown as neon contact cards." loading="lazy" decoding="async">
+        <figcaption>Messages panel</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- 08 — Ecosystem -->
+  <section class="section ecosystem" id="ecosystem" aria-labelledby="eco-title">
+    <div class="container">
+      <header class="section-head">
+        <p class="eyebrow reveal">The ecosystem</p>
+        <h2 class="h2 reveal" id="eco-title">One universe, three pieces.</h2>
+      </header>
+      <div class="eco">
+        <a class="eco-card eco-card--main glass glass--floating depth-reveal" href="https://github.com/waxdred/skyland" rel="noopener">
+          <span class="eco-card__media"><img src="/skyland-site/static/images/switcher-1600.webp"
+     srcset="/skyland-site/static/images/switcher-800.webp 800w, /skyland-site/static/images/switcher-1600.webp 1600w"
+     sizes="(min-width: 900px) 60vw, 92vw" width="1600" height="1031" alt=""
+     loading="lazy" decoding="async"></span>
+          <span class="eco-card__body">
+            <span class="eco-card__name">Skyland <span class="stars" data-stars="skyland" hidden><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 .9l2.2 4.5 4.9.7-3.6 3.5.9 4.9L8 12.2l-4.4 2.3.9-4.9L.9 6.1l4.9-.7z"/></svg><span class="stars__n"></span><span class="sr-only"> stars on GitHub</span></span></span>
+            <span class="eco-card__desc">The window management experience. Tiling, workspaces, groups, animations and Liquid Glass panels.</span>
+            <span class="eco-card__cta">github.com/waxdred/skyland <span aria-hidden="true">↗</span></span>
+          </span>
+        </a>
+        <a class="eco-card glass glass--floating depth-reveal" style="--i: 1" href="https://github.com/waxdred/skylandBar" rel="noopener">
+          <span class="eco-card__media eco-card__media--bar"><img src="/skyland-site/static/images/skylandbar-1600.webp" width="1600" height="48" alt="" loading="lazy" decoding="async"></span>
+          <span class="eco-card__body">
+            <span class="eco-card__name">SkylandBar <span class="stars" data-stars="skylandbar" hidden><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 .9l2.2 4.5 4.9.7-3.6 3.5.9 4.9L8 12.2l-4.4 2.3.9-4.9L.9 6.1l4.9-.7z"/></svg><span class="stars__n"></span><span class="sr-only"> stars on GitHub</span></span></span>
+            <span class="eco-card__desc">A refined system bar.</span>
+            <span class="eco-card__cta">github.com/waxdred/skylandBar <span aria-hidden="true">↗</span></span>
+          </span>
+        </a>
+        <a class="eco-card glass glass--floating depth-reveal" style="--i: 2" href="https://github.com/waxdred/skyland-cyberdeck" rel="noopener">
+          <span class="eco-card__media eco-card__media--deck" aria-hidden="true"><span class="deck-glyph"><i></i><i></i><i></i><i></i></span></span>
+          <span class="eco-card__body">
+            <span class="eco-card__name">Skyland Cyberdeck <span class="stars" data-stars="cyberdeck" hidden><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 .9l2.2 4.5 4.9.7-3.6 3.5.9 4.9L8 12.2l-4.4 2.3.9-4.9L.9 6.1l4.9-.7z"/></svg><span class="stars__n"></span><span class="sr-only"> stars on GitHub</span></span></span>
+            <span class="eco-card__desc">A personal interface for applications and messages.</span>
+            <span class="eco-card__cta">github.com/waxdred/skyland-cyberdeck <span aria-hidden="true">↗</span></span>
+          </span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 09 — Built, not bought -->
+  <section class="section maker" id="maker" aria-labelledby="maker-title">
+    <div class="container maker__grid">
+      <div>
+        <p class="eyebrow reveal">Built for the curious</p>
+        <h2 class="h2 reveal" id="maker-title">Built, not bought.</h2>
+        <p class="lede reveal">A personal experiment in reshaping the macOS experience — one window, one animation and one idea at a time.</p>
+        <figure class="shot shot--settings glass glass--floating depth-reveal">
+          <img src="/skyland-site/static/images/settings-1600.webp"
+     srcset="/skyland-site/static/images/settings-800.webp 800w, /skyland-site/static/images/settings-1600.webp 1600w"
+     sizes="(min-width: 900px) 34vw, 92vw" width="1600" height="1688" alt="Skyland settings window: decoration sliders (rounding, opacity, dim, border width, Ghostty blur) and animation settings with the cyberspace preset."
+     loading="lazy" decoding="async">
+          <figcaption>Settings window, <kbd>alt</kbd>&nbsp;<kbd>i</kbd> — applied live, comments in the config kept.</figcaption>
+        </figure>
+      </div>
+      <ol class="log">
+        <li class="log__item reveal"><span class="log__tag mono">inspiration</span><h3>Hyprland, on a Mac</h3><p>Dwindle, groups, submaps and <code>bezier</code> lines come straight from <a href="https://hyprland.org" rel="noopener">Hyprland</a>; the look from the <a href="https://github.com/43PR/dotfiles" rel="noopener">43PR dotfiles</a>.</p></li>
+        <li class="log__item reveal"><span class="log__tag mono">motion</span><h3>Animations stepped by hand</h3><p>A scripting addition in the Dock steps window transforms and alpha every 8&nbsp;ms. The <a href="https://github.com/waxdred/skyland/tree/main/Sources/SkylandAnimation" rel="noopener">animation engine</a> has its own <a href="https://github.com/waxdred/skyland/blob/main/tools/animation-lab/index.html" rel="noopener">browser lab</a>.</p></li>
+        <li class="log__item reveal"><span class="log__tag mono">native</span><h3>Exploring macOS internals</h3><p>Private SkyLight signatures recovered by reverse engineering the dyld shared cache. <a href="https://github.com/waxdred/skyland#how-it-works" rel="noopener">How it works</a>.</p></li>
+        <li class="log__item reveal"><span class="log__tag mono">yours</span><h3>Personalisation first</h3><p>A config file, live settings, recorded keys, per-app rules, themes as CSS.</p></li>
+        <li class="log__item reveal"><span class="log__tag mono">coherence</span><h3>One environment</h3><p>Window manager, bar and cyberdeck share the same glass, the same accent and the same socket. <a href="https://github.com/waxdred/skyland/blob/main/CHANGELOG.md" rel="noopener">Changelog</a>.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- 10 — GitHub -->
+  <section class="section source" id="source" aria-labelledby="source-title">
+    <div class="container">
+      <div class="source__panel glass glass--focus depth-reveal">
+        <h2 class="h2" id="source-title">Explore the source.</h2>
+        <p class="lede">Skyland is an evolving open-source project. Explore the code, follow the progress and help shape the experience.</p>
+        <div class="install">
+          <code class="install__cmd" data-copy-source>brew install waxdred/tap/skyland &amp;&amp; skyland install</code>
+          <button class="install__copy" type="button" data-copy>Copy</button>
+          <span class="sr-only" aria-live="polite" data-copy-status></span>
+        </div>
+        <div class="source__actions">
+          <a class="btn btn--primary" href="https://github.com/waxdred/skyland" rel="noopener">Explore the repository</a>
+          <a class="btn btn--ghost" href="https://github.com/waxdred/skyland/stargazers" rel="noopener">Star on GitHub <span class="stars" data-stars="skyland" hidden><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 .9l2.2 4.5 4.9.7-3.6 3.5.9 4.9L8 12.2l-4.4 2.3.9-4.9L.9 6.1l4.9-.7z"/></svg><span class="stars__n"></span><span class="sr-only"> stars on GitHub</span></span></a>
+          <a class="btn btn--ghost" href="https://github.com/waxdred/skyland#readme" rel="noopener">Read the documentation</a>
+        </div>
+      </div>
+    </div>
+  </section>
 </main>
-<footer><div class="wrap">
-<span>skyland is MIT licensed, a fork of <a href="https://github.com/nikitabobko/AeroSpace">AeroSpace</a>. Not affiliated with Apple or Hyprland.</span>
-<span><a href="https://github.com/waxdred/skyland">skyland</a> · <a href="https://github.com/waxdred/skylandBar">skylandbar</a> · <a href="https://github.com/waxdred/skyland-cyberdeck">cyberdeck</a> · <a href="https://github.com/waxdred/skyland/releases">Releases</a></span>
-</div></footer>
+
+<footer class="footer">
+  <div class="container footer__inner">
+    <a class="nav__brand" href="#top">
+      <img src="/skyland-site/static/images/logo-128.png" width="24" height="24" alt="">
+      <span>Skyland</span>
+    </a>
+    <ul class="footer__links">
+      <li><a href="https://github.com/waxdred/skyland" rel="noopener">GitHub</a></li>
+      <li><a href="https://github.com/waxdred/skyland#readme" rel="noopener">Documentation</a></li>
+      <li><a href="https://github.com/waxdred/skylandBar" rel="noopener">SkylandBar</a></li>
+      <li><a href="https://github.com/waxdred/skyland-cyberdeck" rel="noopener">Cyberdeck</a></li>
+      <li><a href="https://github.com/waxdred/skyland/releases" rel="noopener">Releases</a></li>
+    </ul>
+    <p class="footer__legal">Skyland by waxdred · MIT License · built on <a href="https://github.com/nikitabobko/AeroSpace" rel="noopener">AeroSpace</a> © Nikita Bobko</p>
+    <a class="footer__top" href="#top">Back to top <span aria-hidden="true">↑</span></a>
+  </div>
+</footer>
+
+
+  
+  <script src="/skyland-site/static/js/navigation.js" defer></script>
+  
+  <script src="/skyland-site/static/js/glass-effects.js" defer></script>
+  
+  <script src="/skyland-site/static/js/scroll-effects.js" defer></script>
+  
+  <script src="/skyland-site/static/js/interactions.js" defer></script>
+  
 </body>
 </html>
